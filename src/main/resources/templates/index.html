@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head lang="en" th:replace="fragments/header :: header"> </head>
+ <body>
+ <main>
+  <div class="blog--container">
+   <div class="page--wrapper">
+    </div>
+  </div>
+     <table>
+         <h1>My IP Info</h1>
+         <tr>
+             <td>My Ip</td>
+              <td th:text="${defaultGeo.ip}">Ip</td>
+         </tr>
+         <tr>
+             <td>Latitude/Longitude </td>
+             <td th:text="${defaultGeo.loc}">LL</td>
+         </tr>
+     </table>
+     <div>
+         <h1>Result</h1>
+         <table>
+
+         <tr th:each="instance : ${treeMap}">
+             <td><span th:text="${#numbers.formatDecimal(instance.key, 0, 'COMMA', 2, 'POINT')}" th:remove="tag"></span> Miles</td>
+             <td th:text="${instance.value}">Value</td>
+         </tr>
+
+         </table>
+     </div>
+ </main>
+ <div lang="en" th:replace="fragments/footer :: footer"> </div>
+ </body>
+</html>
