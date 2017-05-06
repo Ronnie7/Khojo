@@ -13,4 +13,4 @@
 ```
 
 <h4>Application Preview </h4>
-![alt text](https://github.com/Ronnie7/Khojo/blob/master/demoPic.PNG)
+https://github.com/Ronnie7/Khojo/blob/master/demoPic.PNG
