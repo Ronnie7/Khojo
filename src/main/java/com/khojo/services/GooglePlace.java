@@ -2,6 +2,7 @@ package com.khojo.services;
 
 import com.khojo.domain.Places;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,5 +10,5 @@ import java.util.Map;
  */
 public interface GooglePlace {
     Places getNearestParkData(String loc);
-    Map<Double,String> nearestParkToMe(String loc);
+    List nearestParkToMe(String loc);
 }

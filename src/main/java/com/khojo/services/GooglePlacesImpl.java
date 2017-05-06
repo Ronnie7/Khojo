@@ -1,5 +1,6 @@
 package com.khojo.services;
 
+import com.khojo.domain.JsonData;
 import com.khojo.domain.Location;
 import com.khojo.domain.Places;
 import com.khojo.domain.Results;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -19,21 +21,28 @@ public class GooglePlacesImpl implements GooglePlace {
 
     @Override
     public Places getNearestParkData(String loc){
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key=AIzaSyCKuDYYADz1E28wiMn8SB8EowqJFI-yQEg";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key=YOURAPIKEY";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
         return restTemplate.getForObject(url,Places.class);
     }
 
     @Override
-    public Map<Double, String> nearestParkToMe(String currentPosition) {
-        Map<Double,String> sortedNearestPark = new TreeMap<>();
+    public List nearestParkToMe(String currentPosition) {
+        Map<Double,JsonData> sortedNearestPark = new TreeMap<>();//store shorted value.
+        List<JsonData> list = new ArrayList<>();
         for (Results result:getNearestParkData(currentPosition).getResults()) {
             Location thisLocation = result.getGeometry().getLocation();
             Double distance = getDistanceFrom(currentPosition, thisLocation);
-            sortedNearestPark.put(distance,result.getName());
+            JsonData jsonData = new JsonData();
+            jsonData.setMiles(distance);
+            jsonData.setName(result.getName());
+            sortedNearestPark.put(jsonData.getMiles(),jsonData);
         }
-        return sortedNearestPark;
+        sortedNearestPark.forEach((k,v)->{
+            list.add(v);
+        });
+        return list;
     }
 
     private Double getDistanceFrom(String currentPosition, Location thisLocation) {
