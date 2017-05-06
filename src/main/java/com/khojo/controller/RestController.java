@@ -20,7 +20,7 @@ import java.util.Map;
 @RequestMapping
 public class RestController {
 
-    private GooglePlace googlePlace;
+    private final GooglePlace googlePlace;
 
     @Autowired
     public RestController(GooglePlace googlePlace) {

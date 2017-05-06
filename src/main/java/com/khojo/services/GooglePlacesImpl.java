@@ -16,13 +16,12 @@ import java.util.TreeMap;
 @Service
 public class GooglePlacesImpl implements GooglePlace {
 
-    private final String googleKey = "AIzaSyCKuDYYADz1E28wiMn8SB8EowqJFI-yQEg";
     @Override
     public Places getNearestParkData(String loc){
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key="+this.googleKey;
+        String googleKey = "AIzaSyCKuDYYADz1E28wiMn8SB8EowqJFI-yQEg";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key="+ googleKey;
         RestTemplate restTemplate = new RestTemplate();
-        Places place = restTemplate.getForObject(url,Places.class);
-        return  place;
+        return restTemplate.getForObject(url,Places.class);
     }
 
     @Override

@@ -4,7 +4,7 @@ package com.khojo.domain;
  * Created by Ronnie on 5/6/2017.
  */
 public class FormAttr {
-    String loc;
+    private String loc;
 
     public String getLoc() {
         return loc;

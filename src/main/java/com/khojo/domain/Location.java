@@ -1,8 +1,8 @@
 package com.khojo.domain;
 
 public class Location{
-    public double lat;
-    public double lng;
+    private double lat;
+    private double lng;
 
     public double getLat() {
         return lat;

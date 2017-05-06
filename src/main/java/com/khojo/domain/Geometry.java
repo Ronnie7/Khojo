@@ -2,9 +2,9 @@ package com.khojo.domain;
 
 public class Geometry {
 
-    public Location location;
-    public Location viewpoint;
-    public Location southwest;
+    private Location location;
+    private Location viewpoint;
+    private Location southwest;
 
     public Location getLocation() {
         return location;

@@ -8,6 +8,6 @@ import java.util.Map;
  * Created by narendrakumar on 5/4/17.
  */
 public interface GooglePlace {
-    public Places getNearestParkData(String loc);
-    public Map<Double,String> nearestParkToMe(String loc);
+    Places getNearestParkData(String loc);
+    Map<Double,String> nearestParkToMe(String loc);
 }

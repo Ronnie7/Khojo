@@ -16,8 +16,8 @@ import java.util.Map;
  */
 @Controller
 public class MainController {
-    private GeoLocation geoLocation;
-    private GooglePlace googlePlace;
+    private final GeoLocation geoLocation;
+    private final GooglePlace googlePlace;
 
 
     @Autowired
@@ -26,6 +26,7 @@ public class MainController {
         this.googlePlace = googlePlace;
     }
 
+    @SuppressWarnings("SameReturnValue")
     @RequestMapping("/")
     public String index(Model model) {
         DefaultGeo defaultGeo = this.geoLocation.getMyIP();

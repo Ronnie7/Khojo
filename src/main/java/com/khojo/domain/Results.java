@@ -3,11 +3,11 @@ package com.khojo.domain;
 public class Results{
 
 
-    public Geometry geometry;
-    public String name;
-    public String vicinity;
-    public String icon;
-    public String id;
+    private Geometry geometry;
+    private String name;
+    private String vicinity;
+    private String icon;
+    private String id;
 
     public Geometry getGeometry() {
         return geometry;
