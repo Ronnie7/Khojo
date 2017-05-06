@@ -13,7 +13,6 @@ import java.util.Map;
 
 /**
  * Created by narendrakumar on 5/4/17.
- *
  */
 
 
@@ -28,14 +27,11 @@ public class RestController {
         this.googlePlace = googlePlace;
     }
 
-
-    @RequestMapping(value = "/{loc}/", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/json/{loc}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
     Map getNewsById(@PathVariable("loc") String loc) {
         return googlePlace.closestParkToMe(loc);
     }
-
-
 
 }

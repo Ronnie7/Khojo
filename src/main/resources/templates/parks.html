@@ -2,33 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en" th:replace="fragments/header :: header"></head>
 <body>
+
 <head lang="en" th:replace="fragments/nav :: nav"></head>
 <div class="container">
-    <h3>Location information based on IP Address</h3>
-    <table class="table table-striped">
-        <tbody>
-        <tr>
-            <td>Hostname</td>
-            <td th:text="${defaultGeo.hostname}"></td>
-        </tr>
-        <tr>
-            <td>IP Address</td>
-            <td th:text="${defaultGeo.ip}"></td>
-        </tr>
-        <tr>
-            <td>City</td>
-            <td th:text="${defaultGeo.city}"></td>
-        </tr>
-        <tr>
-            <td>Latitude/Longitude</td>
-            <td th:text="${defaultGeo.loc}"></td>
-        </tr>
-        <tr>
-            <td>Postal Code</td>
-            <td th:text="${defaultGeo.postal}">57105</td>
-        </tr>
-        </tbody>
-    </table>
+    <br/>
     <form action="#" th:action="@{/parks}" th:object="${formAttr}" method="post">
         <input type="text" name="loc" id="loc" th:value="0" />
         <input type="submit" class="btn btn-info" title="Find location using my Browser" value="Find nearest public park"/>
