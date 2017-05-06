@@ -17,7 +17,6 @@ import java.util.TreeMap;
 public class GooglePlacesImpl implements GooglePlace {
 
     private final String googleKey = "AIzaSyCKuDYYADz1E28wiMn8SB8EowqJFI-yQEg";
-
     @Override
     public Places getNearestParkData(String loc){
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key="+this.googleKey;
@@ -27,30 +26,26 @@ public class GooglePlacesImpl implements GooglePlace {
     }
 
     @Override
-    public Map<Double, String> closestParkToMe(String currentPosition) {
+    public Map<Double, String> nearestParkToMe(String currentPosition) {
         List<Results> results = getNearestParkData(currentPosition).getResults();
         Map<Double,String> sortedNearestPark = new TreeMap<>();
 
         for (Results result:results) {
             Location thisLocation = result.getGeometry().getLocation();
-
             Double distance = getDistanceFrom(currentPosition, thisLocation);
-
             sortedNearestPark.put(distance,result.getName());
         }
+
         return sortedNearestPark;
     }
 
     private Double getDistanceFrom(String currentPosition, Location thisLocation) {
         String[] position = currentPosition.split(",");
-
         return distance(Double.valueOf(position[0]),Double.valueOf(position[1]), thisLocation.getLat() , thisLocation.getLng());
     }
 
-    public Double distance(double lat1, double lon1,double lat2, double lon2) {
-
+    private Double distance(double lat1, double lon1,double lat2, double lon2) {
         final int R = 6371; // Radius of the earth
-
         double latDistance = Math.toRadians(lat2 - lat1);
         double lonDistance = Math.toRadians(lon2 - lon1);
         double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
@@ -58,9 +53,7 @@ public class GooglePlacesImpl implements GooglePlace {
                 * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         double distance = R * c * 1000; // convert to meters
-
         distance = Math.pow(distance, 2) + Math.pow(0,2);
-
         return  (Math.sqrt(distance)) / 1609.344;
     }
 }

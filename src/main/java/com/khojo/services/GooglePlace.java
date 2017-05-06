@@ -9,5 +9,5 @@ import java.util.Map;
  */
 public interface GooglePlace {
     public Places getNearestParkData(String loc);
-    public Map<Double,String> closestParkToMe(String loc);
+    public Map<Double,String> nearestParkToMe(String loc);
 }

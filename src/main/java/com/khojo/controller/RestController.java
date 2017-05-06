@@ -31,7 +31,7 @@ public class RestController {
     public
     @ResponseBody
     Map getNewsById(@PathVariable("loc") String loc) {
-        return googlePlace.closestParkToMe(loc);
+        return googlePlace.nearestParkToMe(loc);
     }
 
 }
