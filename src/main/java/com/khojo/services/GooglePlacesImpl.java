@@ -29,7 +29,7 @@ public class GooglePlacesImpl implements GooglePlace {
 
     @Override
     public List nearestParkToMe(String currentPosition) {
-        Map<Double,JsonData> sortedNearestPark = new TreeMap<>();//store shorted value.
+        Map<Double,JsonData> sortedNearestPark = new TreeMap<>();//store sorted value.
         List<JsonData> list = new ArrayList<>();
         for (Results result:getNearestParkData(currentPosition).getResults()) {
             Location thisLocation = result.getGeometry().getLocation();
