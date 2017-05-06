@@ -27,10 +27,8 @@ public class GooglePlacesImpl implements GooglePlace {
 
     @Override
     public Map<Double, String> nearestParkToMe(String currentPosition) {
-        List<Results> results = getNearestParkData(currentPosition).getResults();
         Map<Double,String> sortedNearestPark = new TreeMap<>();
-
-        for (Results result:results) {
+        for (Results result:getNearestParkData(currentPosition).getResults()) {
             Location thisLocation = result.getGeometry().getLocation();
             Double distance = getDistanceFrom(currentPosition, thisLocation);
             sortedNearestPark.put(distance,result.getName());
