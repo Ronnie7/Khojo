@@ -27,7 +27,7 @@ public class RestController {
         this.googlePlace = googlePlace;
     }
 
-    @RequestMapping(value = "/json/{loc}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/json/{loc}/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public
     @ResponseBody
     Map getNewsById(@PathVariable("loc") String loc) {

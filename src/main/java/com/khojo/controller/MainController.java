@@ -40,7 +40,7 @@ public class MainController {
     @PostMapping("/parks")
     public String index(@ModelAttribute FormAttr formAttr, Model model) {
         if (formAttr.getLoc().length() == 0) {
-            return "redirect:index";
+            return "redirect:";
         }
         Map<Double, String> treeMap = this.googlePlace.closestParkToMe(formAttr.getLoc());
         model.addAttribute("treeMap", treeMap);
