@@ -4,6 +4,7 @@ import com.khojo.domain.Location;
 import com.khojo.domain.Places;
 import com.khojo.domain.Results;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -18,9 +19,9 @@ public class GooglePlacesImpl implements GooglePlace {
 
     @Override
     public Places getNearestParkData(String loc){
-        String googleKey = "AIzaSyCKuDYYADz1E28wiMn8SB8EowqJFI-yQEg";
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key="+ googleKey;
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key=AIzaSyCKuDYYADz1E28wiMn8SB8EowqJFI-yQEg";
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
         return restTemplate.getForObject(url,Places.class);
     }
 
@@ -34,7 +35,6 @@ public class GooglePlacesImpl implements GooglePlace {
             Double distance = getDistanceFrom(currentPosition, thisLocation);
             sortedNearestPark.put(distance,result.getName());
         }
-
         return sortedNearestPark;
     }
 
