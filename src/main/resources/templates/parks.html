@@ -19,11 +19,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="instance : ${treeMap}">
-            <td><span th:text="${#numbers.formatDecimal(instance.key, 0, 'COMMA', 2, 'POINT')}" th:remove="tag"></span>
+        <tr th:each="instance : ${list}">
+            <td><span th:text="${#numbers.formatDecimal(instance.miles, 0, 'COMMA', 2, 'POINT')}" th:remove="tag"></span>
                 Miles
             </td>
-            <td th:text="${instance.value}">Value</td>
+            <td th:text="${instance.name}">Value</td>
         </tr>
         </tbody>
     </table>

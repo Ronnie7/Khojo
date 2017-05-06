@@ -2,6 +2,7 @@ package com.khojo.controller;
 
 import com.khojo.domain.DefaultGeo;
 import com.khojo.domain.FormAttr;
+import com.khojo.domain.JsonData;
 import com.khojo.services.GeoLocation;
 import com.khojo.services.GooglePlace;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,13 +28,12 @@ public class MainController {
         this.googlePlace = googlePlace;
     }
 
-    @SuppressWarnings("SameReturnValue")
     @RequestMapping("/")
     public String index(Model model) {
         DefaultGeo defaultGeo = this.geoLocation.getMyIP();
-        Map<Double,String> treeMap = this.googlePlace.nearestParkToMe(defaultGeo.getLoc());
+        List<JsonData> list = this.googlePlace.nearestParkToMe(defaultGeo.getLoc());
         model.addAttribute("defaultGeo", defaultGeo);
-        model.addAttribute("treeMap", treeMap);
+        model.addAttribute("list", list);
         return "index";
     }
 
@@ -41,8 +42,8 @@ public class MainController {
         if (formAttr.getLoc().length() == 0) {
             return "redirect:";
         }
-        Map<Double, String> treeMap = this.googlePlace.nearestParkToMe(formAttr.getLoc());
-        model.addAttribute("treeMap", treeMap);
+        List<JsonData> list = this.googlePlace.nearestParkToMe(formAttr.getLoc());
+        model.addAttribute("list", list);
         return "parks";
     }
 
