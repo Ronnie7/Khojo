@@ -37,7 +37,7 @@ public class GooglePlacesImpl implements GooglePlace {
             jsonData.setName(result.getName());
             sortedNearestPark.put(jsonData.getMiles(),jsonData);
         }
-        return (new ArrayList(sortedNearestPark.values()));
+        return (new ArrayList<>(sortedNearestPark.values()));
     }
 
     private Double getDistanceFrom(String currentPosition, Location thisLocation) {
