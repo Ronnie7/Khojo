@@ -7,6 +7,8 @@ import com.khojo.domain.Results;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -35,7 +37,7 @@ public class GooglePlacesImpl implements GooglePlace {
             jsonData.setName(result.getName());
             sortedNearestPark.put(jsonData.getMiles(),jsonData);
         }
-        return (List) sortedNearestPark.values();
+        return (new ArrayList(sortedNearestPark.values()));
     }
 
     private Double getDistanceFrom(String currentPosition, Location thisLocation) {
