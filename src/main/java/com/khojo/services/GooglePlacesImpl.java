@@ -21,7 +21,7 @@ public class GooglePlacesImpl implements GooglePlace {
 
     @Override
     public Places getNearestParkData(String loc){
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key=YOURAPIKEY";
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+loc+"&radius=16093.4&type=park&keyword=public&key=AIzaSyCKuDYYADz1E28wiMn8SB8EowqJFI-yQEg";
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new DefaultResponseErrorHandler());
         return restTemplate.getForObject(url,Places.class);
@@ -30,19 +30,14 @@ public class GooglePlacesImpl implements GooglePlace {
     @Override
     public List nearestParkToMe(String currentPosition) {
         Map<Double,JsonData> sortedNearestPark = new TreeMap<>();//store shorted value.
-        List<JsonData> list = new ArrayList<>();
         for (Results result:getNearestParkData(currentPosition).getResults()) {
-            Location thisLocation = result.getGeometry().getLocation();
-            Double distance = getDistanceFrom(currentPosition, thisLocation);
+            Double distance = getDistanceFrom(currentPosition, result.getGeometry().getLocation());
             JsonData jsonData = new JsonData();
             jsonData.setMiles(distance);
             jsonData.setName(result.getName());
             sortedNearestPark.put(jsonData.getMiles(),jsonData);
         }
-        sortedNearestPark.forEach((k,v)->{
-            list.add(v);
-        });
-        return list;
+        return (List) sortedNearestPark.values();
     }
 
     private Double getDistanceFrom(String currentPosition, Location thisLocation) {
