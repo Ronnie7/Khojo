@@ -1,7 +1,4 @@
 package com.khojo.domain;
-
-import com.sun.xml.internal.ws.developer.Serialization;
-
 /**
  * Created by Ronnie on 5/6/2017.
  */
